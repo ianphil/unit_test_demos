@@ -8,7 +8,7 @@ namespace CSE.Web.Repositories
 {
     public interface IStudentRepository : IDisposable
     {
-        Task<IEnumerable<Student>> GetStudents();
+        Task<List<Student>> GetStudents();
         Task<Student> GetStudentByID(int studentId);
         Task InsertStudent(Student student);
         Task DeleteStudent(int studentID);

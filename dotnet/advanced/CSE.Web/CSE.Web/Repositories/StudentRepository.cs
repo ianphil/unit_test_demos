@@ -23,7 +23,7 @@ namespace CSE.Web.Repositories
             _context = new SchoolContext(optionsBuilder.Options);
         }
 
-        public async Task<IEnumerable<Student>> GetStudents()
+        public async Task<List<Student>> GetStudents()
         {
             return await _context.Students.ToListAsync();
         }

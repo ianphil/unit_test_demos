@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace CSE.Web.Tests.Mocks
 {
@@ -28,7 +29,7 @@ namespace CSE.Web.Tests.Mocks
 
         public Task DeleteStudent(int studentID)
         {
-            return new Task(() => 
+            return Task.Run(() => 
             {
                 _students.RemoveAll(x => x.StudentId == studentID);
             });
@@ -41,15 +42,15 @@ namespace CSE.Web.Tests.Mocks
 
         public Task<Student> GetStudentByID(int studentId)
         {
-            return new Task<Student>(() => 
+            return Task.Run(() => 
             {
                 return _students.Find(x => x.StudentId == studentId);
             });
         }
 
-        public Task<IEnumerable<Student>> GetStudents()
+        public Task<List<Student>> GetStudents()
         {
-            return new Task<IEnumerable<Student>>(() =>
+            return Task.Run(() =>
             {
                 return _students;
             });
@@ -57,7 +58,7 @@ namespace CSE.Web.Tests.Mocks
 
         public Task InsertStudent(Student student)
         {
-            return new Task(() =>
+            return Task.Run(() =>
             {
                 _students.Add(student);
             });
@@ -65,12 +66,12 @@ namespace CSE.Web.Tests.Mocks
 
         public Task Save()
         {
-            return new Task(() => { });
+            return Task.CompletedTask;
         }
 
         public Task UpdateStudent(Student student)
         {
-            return new Task(() => 
+            return Task.Run(() => 
             {
                 DeleteStudent(student.StudentId);
                 InsertStudent(student);
